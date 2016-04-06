@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>AngularJS</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/angular-datatables.css">
+	<script src="js/libs/jquery.min.js"></script>
+	<script src="js/libs/jquery.dataTables.min.js"></script> 
+	<script src="js/libs/angular.min.js"></script> 
+	<script src="js/libs/angular-datatables.min.js"></script> 
+	<script src="js/libs/angular-resource.min.js"></script>
+	<script src="js/libs/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container" ng-app="myModule">
+		<h1>Angular-Datatables</h1>
+		<div class="row">
+			<div ng-controller="WithAjaxCtrl as showCase" class="col-sm-12">
+			    <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" class="table">
+			    	
+			    </table>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		angular.module('myModule', ['datatables']).controller('WithAjaxCtrl', WithAjaxCtrl);
+
+		function WithAjaxCtrl(DTOptionsBuilder, DTColumnBuilder) {
+		    var vm = this;
+		    vm.dtOptions = DTOptionsBuilder.fromSource('data.json')
+		        .withPaginationType('full_numbers');
+		    vm.dtColumns = [
+		        DTColumnBuilder.newColumn('id').withTitle('ID'),
+		        DTColumnBuilder.newColumn('firstName').withTitle('First name'),
+		        DTColumnBuilder.newColumn('lastName').withTitle('Last name'),
+		        DTColumnBuilder.newColumn('designation').withTitle('Designation')
+		    ];
+		}
+	</script>
+</body>
+</html>
