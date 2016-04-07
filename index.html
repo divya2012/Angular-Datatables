@@ -4,14 +4,14 @@
 	<title>AngularJS</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/angular-datatables.css">
-	<script src="js/libs/jquery.min.js"></script>
-	<script src="js/libs/jquery.dataTables.min.js"></script> 
-	<script src="js/libs/angular.min.js"></script> 
-	<script src="js/libs/angular-datatables.min.js"></script> 
-	<script src="js/libs/angular-resource.min.js"></script>
-	<script src="js/libs/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/angular-datatables.css">
+	<script src="assets/libs/jquery.min.js"></script>
+	<script src="assets/libs/jquery.dataTables.min.js"></script> 
+	<script src="assets/libs/angular.min.js"></script> 
+	<script src="assets/libs/angular-datatables.min.js"></script> 
+	<script src="assets/libs/angular-resource.min.js"></script>
+	<script src="assets/libs/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
 		<h1>Angular-Datatables</h1>
 		<div class="row">
 			<div ng-controller="AngularWayCtrl as showCase" class="col-sm-12">
-			    <table datatable="ng" dt-options="showCase.dtOptions" class="table"><!--   -->
+			    <table datatable="ng" dt-options="showCase.dtOptions" class="table">
 			    <thead>
 		        <tr>
 		            <th>ID</th>
@@ -40,14 +40,16 @@
 	</div>
 
 	<script>
-		angular.module('myModule', ['datatables', 'ngResource']).controller('AngularWayCtrl', AngularWayCtrl);
 
 		function AngularWayCtrl($resource, DTOptionsBuilder, DTColumnDefBuilder) {
 		    var vm = this;
 		    vm.persons = [];
 		    vm.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers');
-		    vm.persons = $resource('data.json').query();
+		    vm.persons = $resource('assets/json/data.json').query();
 		}
+
+		angular.module('myModule', ['datatables', 'ngResource'])
+		.controller('AngularWayCtrl', AngularWayCtrl);
 
 	</script>
 </body>
